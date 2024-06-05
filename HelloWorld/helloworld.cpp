@@ -3,6 +3,8 @@
 #include <string>       // String type
 #include <chrono>       // Timers and stuff
 #include <thread>       // Multithreading, sleep
+#include <unistd.h>               // for linux 
+
 
 
 //                                          ---------------------------------
@@ -43,16 +45,21 @@ int userVerification() {
     int num1;
     int num2;
 
+    // Creates a seed to randomize from
+    // Note: null or nullptr is the exact same as 0 and is 
+    // interpreted as 0 by the compiler
+    std::srand(std::time(nullptr));
+
     // Creation of an array (a variable with more than one value stored within) 
     // of the type string (only string variables can be stored within)
     std::string operands[] = {"+", "-", "*", "/"}; 
 
     // Creation of an integer value that stores a random value from 0 to 3
-    int operandIndex = rand() % (3);
+    int operandIndex = std::rand() % 3;
 
     // Storing a random value from 0 to 20 in the two previously defined variables
-    num1 = rand() % 20;
-    num2 = rand() % 20;
+    num1 = std::rand() % 20;
+    num2 = std::rand() % 20;
     
     // Checking if the previously generated randomized value is either 2 OR (||) 3 
     // (used to represent multiplication and division)
@@ -60,8 +67,8 @@ int userVerification() {
 
         // Storing a random value from 0 to 9 in the two previously defined variables
         // Note: This overwrites the previously stored values
-        num1 = rand() % 9;
-        num2 = rand() % 9;
+        num1 = std::rand() % 9;
+        num2 = std::rand() % 9;
 
     }
 
@@ -137,16 +144,16 @@ int main() {
         
         // Following error codes
         case 1:
-            std::cout << "Verification failed. Please try again later.\nExiting...";
+            std::cout << "Verification failed. Please try again later.\nExiting...\n";
             // Exits the main function, in turn closing the application
             return 0;
             break;
         case 2:
-            std::cout << "Calculation error. Please try again later.\nExiting...";
+            std::cout << "Calculation error. Please try again later.\nExiting...\n";
             return 0;
             break;
         default:
-            std::cout << "Something went wrong. Please try again later.\nExiting...";
+            std::cout << "Something went wrong. Please try again later.\nExiting...\n";
             return 0;
             break;
     }
@@ -155,7 +162,7 @@ int main() {
     welcome();
 
     // Sleeps for 10 seconds
-    std::this_thread::sleep(10);
+    sleep(10);
 
 
     // Closes the app
