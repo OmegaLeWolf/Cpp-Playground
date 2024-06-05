@@ -4,16 +4,6 @@
 #include <chrono>       // Timers and stuff
 #include <thread>       // Multithreading, sleep
 
-// Creates a welcome function to be executed when verification is complete
-int welcome() {
-
-    // Outputting text to terminal
-    // Note the usage of \n, which is used to create a new line
-    std::cout << "\nWelcome to this hello world program\n";
-
-    return 0;
-
-}
 
 //                                          ---------------------------------
 //                                          |     std:cout/cin Breakdown    | 
@@ -30,6 +20,18 @@ int welcome() {
 //       Insertion operator. Sends the given input to                Namespace connector - Used to identify the 
 //       cout to be outputted to the console                         namespace where the function is located, 
 //                                                                   namely the std namespace of the C++ library
+
+
+// Creates a welcome function to be executed when verification is complete
+int welcome() {
+
+    // Outputting text to terminal
+    // Note the usage of \n, which is used to create a new line
+    std::cout << "\nWelcome to this hello world program\n";
+
+    return 0;
+
+}
 
 
 //Creates a userVerfication function to verify the user
