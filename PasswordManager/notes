@@ -1,0 +1,8 @@
+Create a C++ Password Manager
+
+Goals:
+- Create an unencrypted database to begin with in MongoDB or something
+- Create a way to add passwords, to remove passwords and to edit passwords
+- Create a way to generate passwords using multiple different kinds of generators
+- Create a GUI with somewhat usable UX
+- QoL as needed
