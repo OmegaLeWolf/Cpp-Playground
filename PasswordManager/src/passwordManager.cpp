@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include "newPassword.h"
 
+int newPassword(); 
 // This is the start of a password Manager project.
 // Version 1.0.0
 // Created by OmegaLeWolf 
@@ -101,7 +103,7 @@ int verifyUserInput(std::string userInput) {
 
 //Main function executed by default
 int main() {
-    
+    //Inititialization
     std::string userInput;
 
     //Welcomes user, initialization
@@ -113,12 +115,12 @@ int main() {
     switch(verifyUserInput(userInput)) {
         //Help
         case 0:
-            std::cout << "Help";
+            help();
             break;
 
         // New
         case 1:
-            std::cout << "New";
+            newPassword();
             break;
 
         // Delete
@@ -134,6 +136,7 @@ int main() {
         //Quit
         case 4:
             std::cout << "Quit";
+            return 0;
             break;
 
         //Invalid input
