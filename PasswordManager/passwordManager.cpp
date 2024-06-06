@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <map>
 
 // This is the start of a password Manager project.
 // Version 1.0.0
@@ -24,64 +25,31 @@ int help() {
 
 }
 
-//Verifies user input / Command selection
-int verifyUserInput(string userInput) {
-    enum Options {
+enum class Options {
         Invalid,
         Help,
         New,
         Delete,
         Edit,
         Quit
-    }
-
-    switch (resolveOption(userInput)) {
-        case Help:
-            return 0;
-            break;
-        
-        case New:
-            return 1;
-            break;
-        
-        case Delete:
-            return 2;
-            break;
-
-        case Edit:
-            return 3;
-            break;
-
-        case Quit:
-            return 4;
-            break;
-
-        case Invalid:
-            return -1;
-            break;
-
-        default:
-            return -2;
-            break;
-    }
-}
+};
 
 //Resolves Option
-Options resolveOption(string input) {
+Options resolveOption(std::string input) {
 
     // Creates a map of all the options, with string as the user's 
     // input and Option as the option to return
-    static const std::map<std::string, Option> optionStrings {
-        { "help", Help },
-        { "h", Help },
-        { "new", New },
-        { "n", New },
-        { "delete", Delete },
-        { "d", Delete },
-        { "edit", Edit },
-        { "e", Edit },
-        { "quit", Quit },
-        { "q", Quit }
+    static const std::map<std::string, Options> optionStrings {
+        { "help", Options::Help },
+        { "h", Options::Help },
+        { "new",Options::New },
+        { "n", Options::New },
+        { "delete", Options::Delete },
+        { "d", Options::Delete },
+        { "edit", Options::Edit },
+        { "e", Options::Edit },
+        { "quit", Options::Quit },
+        { "q", Options::Quit }
     };
 
 
@@ -94,13 +62,47 @@ Options resolveOption(string input) {
         return itr->second;
     }
     // If is not found, return invalid
-    return Invalid; 
+    return Options::Invalid; 
+}
+
+//Verifies user input / Command selection
+int verifyUserInput(std::string userInput) {
+
+    switch (resolveOption(userInput)) {
+        case Options::Help:
+            return 0;
+            break;
+        
+        case Options::New:
+            return 1;
+            break;
+        
+        case Options::Delete:
+            return 2;
+            break;
+
+        case Options::Edit:
+            return 3;
+            break;
+
+        case Options::Quit:
+            return 4;
+            break;
+
+        case Options::Invalid:
+            return -1;
+            break;
+
+        default:
+            return -2;
+            break;
+    }
 }
 
 //Main function executed by default
 int main() {
     
-    string userInput;
+    std::string userInput;
 
     //Welcomes user, initialization
     std::cout << "\nWelcome to Omega's password manager!\n";
@@ -108,34 +110,47 @@ int main() {
 
     std::cin >> userInput;
 
-    switch(verifyUserInput()) {
+    switch(verifyUserInput(userInput)) {
         //Help
         case 0:
+            std::cout << "Help";
             break;
 
         // New
         case 1:
+            std::cout << "New";
             break;
 
         // Delete
         case 2:
+            std::cout << "Delete";
             break;
 
         // Edit
         case 3:
+            std::cout << "Edit";
             break;
 
+        //Quit
         case 4:
+            std::cout << "Quit";
             break;
 
         //Invalid input
         case -1:
+            std::cout << "Invalid Input";
             break;
 
         // Unknown Error
         case -2:
+            std::cout << "Unknown error";
             break;
 
+        default:
+            std::cout << "Oops! Something went wrong.";
+            break;
     }
+
+    return 0;
 
 } 
